@@ -1,0 +1,199 @@
+import { Link } from 'react-router-dom';
+import ImageSlider from '../../components/ImageSlider';
+import Logo from '../../components/Logo';
+import { ArrowRight, CheckCircle, Car, Clock, Award, MapPin, Users, Star, Shield } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+
+const getBannerImages = () => [
+  'https://images.pexels.com/photos/1028746/pexels-photo-1028746.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/1687147/pexels-photo-1687147.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/2064709/pexels-photo-2064709.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/2064711/pexels-photo-2064711.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1920'
+];
+
+export default function DrivingSchool() {
+  const { translations } = useLanguage();
+  const bannerImages = getBannerImages();
+  
+  // Using a completely generic approach to avoid TypeScript errors
+  const features = [
+    { icon: Users, title: 'Certified Instructors', description: 'Highly qualified, licensed instructors with extensive driving experience and professional teaching credentials.' },
+    { icon: Car, title: 'Modern Vehicles', description: 'Well-maintained, late-model vehicles equipped with dual controls for safe, effective learning experience.' },
+    { icon: Clock, title: 'Flexible Scheduling', description: 'Convenient lesson scheduling that fits your busy lifestyle, including evenings and weekends.' },
+    { icon: Award, title: 'Comprehensive Curriculum', description: 'Complete curriculum covering all aspects of safe driving, from basics to advanced defensive techniques.' },
+    { icon: Shield, title: 'Safe Learning Environment', description: 'Controlled learning environment with emphasis on safety protocols and risk-free practice sessions.' },
+    { icon: Star, title: 'Personalized Attention', description: 'Individualized instruction tailored to your specific needs, learning pace, and skill level.' },
+    { icon: MapPin, title: 'Affordable Pricing', description: 'Competitive pricing with transparent fee structure and flexible payment options available.' },
+    { icon: CheckCircle, title: 'Guaranteed Results', description: 'Confidence-building program with proven track record of successful licensing exam results.' }
+  ];
+
+  const courses = [
+    {
+      categoryKey: 'drivingSchoolBeginnerCategory',
+      detailsKey: 'drivingSchoolBeginnerDetails'
+    },
+    {
+      categoryKey: 'drivingSchoolAdvancedCategory',
+      detailsKey: 'drivingSchoolAdvancedDetails'
+    },
+    {
+      categoryKey: 'drivingSchoolLicenseTestCategory',
+      detailsKey: 'drivingSchoolLicenseTestDetails'
+    },
+    {
+      categoryKey: 'drivingSchoolRefresherCategory',
+      detailsKey: 'drivingSchoolRefresherDetails'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <ImageSlider images={bannerImages} height="h-[650px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
+            <div className="max-w-3xl">
+              <div className="flex items-center space-x-4 mb-6 animate-fade-in">
+                <Logo size="lg" />
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">{translations.drivingSchoolTitle || 'Auto-École Mane d\'Afrique'}</h1>
+              </div>
+              <p className="text-xl md:text-3xl max-w-2xl font-light mb-8 animate-fade-in-delay">
+                {translations.drivingSchoolSubtitle || 'Master the road with confidence through our comprehensive driving education programs'}
+              </p>
+              <div className="flex flex-wrap gap-4 animate-fade-in-delay-2">
+                <Link
+                  to={`/register?service=${encodeURIComponent(translations.drivingSchoolTitle || 'Auto-École Mane d\'Afrique')}`}
+                  className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105"
+                  style={{ backgroundColor: '#D6001C' }}
+                >
+                  Apply Now
+                  <Car className="ml-2 h-5 w-5" />
+                </Link>
+                <a
+                  href="#courses"
+                  className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl border-2 border-white text-white"
+                >
+                  Our Driving Courses
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <main>
+        {/* Description Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
+                  {translations.drivingSchoolMainHeading || 'Expert Driving Instruction That Builds Confident, Responsible Drivers'}
+                </h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  {translations.drivingSchoolMainDescription1 || 'Mane Driving School is committed to developing skilled, responsible drivers who navigate roads safely and confidently. Our certified instructors use modern teaching techniques and vehicles equipped with dual controls to ensure a safe learning environment. We cater to beginners, experienced drivers seeking improvement, and those preparing for licensing exams.'}
+                </p>
+                <p className="text-lg text-gray-700">
+                  {translations.drivingSchoolMainDescription2 || 'Our comprehensive curriculum covers everything from basic vehicle operation and traffic laws to advanced defensive driving techniques. Whether you\'re a teenager getting your first license, an adult upgrading your skills, or someone moving from another country, our patient instructors adapt to your learning pace and style.'}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
+                  Our Driving Programs
+                </h3>
+                <p className="text-gray-700 mb-6">
+                  Professional driving school offering comprehensive training programs for all license categories. Our certified instructors provide safe, effective, and convenient driving lessons tailored to your schedule and learning pace.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
+                {translations.drivingSchoolFeaturesHeading || 'Why Choose Our Driving School'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {translations.drivingSchoolHeroDescription || 'Professional driving instruction for safe, confident drivers'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#0A3D91' }}>
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3" style={{ color: '#0A3D91' }}>{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Courses Section */}
+        <section id="courses" className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
+                {translations.drivingSchoolCoursesHeading || 'Our Driving Courses'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {translations.drivingSchoolDescription || 'Professional driving school offering comprehensive training programs for all license categories. Our certified instructors provide safe, effective, and convenient driving lessons tailored to your schedule and learning pace.'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {courses.map((course, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: '#0A3D91' }}>{translations[course.categoryKey] || course.categoryKey}</h3>
+                    <ul className="space-y-2">
+                      {(translations[course.detailsKey] || []).map((detail: string, detailIndex: number) => (
+                        <li key={detailIndex} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
+              {translations.drivingSchoolCtaHeading || 'Ready to Hit the Road?'}
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              {translations.drivingSchoolCallToActionDescription || 'Join our community of confident drivers and start your journey to safe, independent motoring today.'}
+            </p>
+            <Link
+              to={`/register?service=${encodeURIComponent('Auto-École Mane d\'Afrique')}`}
+              className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105 text-white"
+              style={{ backgroundColor: '#D6001C' }}
+            >
+              Apply Now
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
