@@ -1159,7 +1159,7 @@ export default function Admin() {
                       disabled={!selectedFile || uploading}
                       className={`mt-2 px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-all duration-300 ${!selectedFile || uploading ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'}`}
                     >
-                      {uploading ? translations.adminUploading : translations.adminUploadImage}
+                      {uploading ? translations.adminUploading : translations.adminOrUploadImage}
                     </button>
                   </div>
                 </div>
@@ -1837,7 +1837,7 @@ export default function Admin() {
                         disabled={!selectedFile || uploading}
                         className={`mt-2 px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-all duration-300 ${!selectedFile || uploading ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'}`}
                       >
-                        {uploading ? translations.adminUploading : translations.adminUploadImage}
+                        {uploading ? translations.adminUploading : translations.adminOrUploadImage}
                       </button>
                     </div>
                   </div>
@@ -2106,7 +2106,7 @@ export default function Admin() {
                         disabled={!selectedFile || uploading}
                         className={`mt-2 px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-all duration-300 ${!selectedFile || uploading ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'}`}
                       >
-                        {uploading ? translations.adminUploading : translations.adminUploadImage}
+                        {uploading ? translations.adminUploading : translations.adminOrUploadImage}
                       </button>
                     </div>
                   </div>
@@ -2371,7 +2371,7 @@ export default function Admin() {
                         disabled={!selectedFile || uploading}
                         className={`mt-2 px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-all duration-300 ${!selectedFile || uploading ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'}`}
                       >
-                        {uploading ? translations.adminUploading : translations.adminUploadImage}
+                        {uploading ? translations.adminUploading : translations.adminOrUploadImage}
                       </button>
                     </div>
                   </div>
@@ -2640,7 +2640,7 @@ export default function Admin() {
                         disabled={!selectedFile || uploading}
                         className={`mt-2 px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-all duration-300 ${!selectedFile || uploading ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'}`}
                       >
-                        {uploading ? translations.adminUploading : translations.adminUploadImage}
+                        {uploading ? translations.adminUploading : translations.adminOrUploadImage}
                       </button>
                     </div>
                   </div>

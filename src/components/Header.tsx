@@ -135,7 +135,7 @@ export default function Header() {
             role="button"
             aria-label="Company logo - click 5 times to access admin"
           >
-            <Logo size="md" />
+            <Logo size="md" serviceType="header" />
             <Link 
               to="/" 
               className="flex items-center"

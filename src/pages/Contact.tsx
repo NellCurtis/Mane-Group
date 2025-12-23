@@ -167,12 +167,6 @@ export default function Contact() {
       title: translations.contactPageTikTok || 'TikTok',
       content: '@MANÉ GROUPE sarl',
       link: 'https://www.tiktok.com/@manegroupe?_r=1&_t=ZM-92MUSQLyNZ6'
-    },
-    {
-      icon: MapPin,
-      title: translations.contactPageAddress || 'Address',
-      content: 'Bonas devant Auto Ecole Mane D\'Afrik',
-      link: null
     }
   ];
 
@@ -189,8 +183,8 @@ export default function Contact() {
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {contactInfo.map((info, index) => {
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {contactInfo.filter(info => info.title !== translations.contactPageAddress).map((info, index) => {
               const Icon = info.icon;
               return (
                 <div key={index} className="text-center">
@@ -214,6 +208,21 @@ export default function Contact() {
                 </div>
               );
             })}
+            <div className="text-center lg:col-start-2 lg:col-span-2">
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#0A3D91' }}>
+                <MapPin className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-lg font-bold mb-2" style={{ color: '#0A3D91' }}>
+                {translations.contactPageAddress || 'Address'}
+              </h3>
+              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md mb-2 p-4 h-24 flex items-center justify-center">
+                {address ? (
+                  <p className="text-gray-700 text-center font-medium">{address}</p>
+                ) : (
+                  <p className="text-gray-500 text-center">Bonas devant Auto Ecole Mane D'Afrik</p>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -344,15 +353,11 @@ export default function Contact() {
               <h2 className="text-3xl font-bold mb-6" style={{ color: '#0A3D91' }}>
                 {translations.contactPageAddress || 'Our Address'}
               </h2>
-              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md mb-6 p-6">
+              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md mb-6 p-6 h-32 flex items-center justify-center">
                 {address ? (
-                  <div className="flex items-center justify-center h-full">
-                    <p className="text-lg text-gray-700 text-center">{address}</p>
-                  </div>
+                  <p className="text-lg text-gray-700 text-center font-medium">{address}</p>
                 ) : (
-                  <div className="flex items-center justify-center h-full bg-gray-200 text-gray-500">
-                    <p>{translations.contactPageAddressUnavailable || "Address unavailable. Please configure in admin panel."}</p>
-                  </div>
+                  <p className="text-gray-500 text-center">{translations.contactPageAddressUnavailable || "Address unavailable. Please configure in admin panel."}</p>
                 )}
               </div>
               <div className="bg-gray-50 p-6 rounded-lg">

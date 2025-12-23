@@ -60,7 +60,7 @@ export default function GraphicDesign() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
               <div className="flex items-center space-x-4 mb-6 animate-fade-in">
-                <Logo size="lg" />
+                <Logo size="lg" serviceType="graphicDesign" />
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">{translations.graphicDesignTitle || 'Mane Graphic Design'}</h1>
               </div>
               <p className="text-xl md:text-3xl max-w-2xl font-light mb-8 animate-fade-in-delay">

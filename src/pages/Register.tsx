@@ -45,7 +45,7 @@ export default function Register() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <div className="flex justify-center mb-6">
-            <Logo size="lg" />
+            <Logo size="lg" serviceType="header" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {translations.registrationPageTitle || 'Service Registration'}

@@ -29,22 +29,22 @@ const teamMembers = [
   {
     name: 'Marie Ndong',
     role: 'CEO & Founder',
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: '/images/immigration/immi1.jpg'
   },
   {
     name: 'Jean-Pierre Mbengue',
     role: 'CTO',
-    image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: '/images/immigration/immi2.jpg'
   },
   {
     name: 'Aisha Diop',
     role: 'Head of Immigration Services',
-    image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: '/images/immigration/immi3.jpg'
   },
   {
     name: 'Pierre Akono',
     role: 'Lead Instructor',
-    image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: '/images/immigration/immi4.jpg'
   }
 ];
 
@@ -86,9 +86,9 @@ export default function About() {
             </div>
             <div>
               <img
-                src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="/images/About/about1.jpg"
                 alt={translations.aboutPageTeamImageAlt || "MANÉ GROUP Team"}
-                className="rounded-lg shadow-xl w-full h-full object-cover"
+                className="rounded-lg shadow-xl w-full h-96 object-cover"
               />
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function About() {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-64 object-cover"
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>
@@ -185,9 +185,9 @@ export default function About() {
           </h2>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img
-              src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="/images/About/about2.jpg"
               alt="Our Mission"
-              className="w-full h-64 object-cover"
+              className="w-full h-80 object-cover rounded-lg"
             />
           </div>
           <div className="mt-8">
@@ -207,6 +207,10 @@ export default function About() {
           <p className="text-xl mb-8">
             {translations.aboutPageSubtitle}
           </p>
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold mb-4">Our Address</h3>
+            <p className="text-lg bg-blue-800/30 rounded-lg py-4 px-6 max-w-2xl mx-auto">Bonas devant Auto Ecole Mane D'Afrik</p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/register"

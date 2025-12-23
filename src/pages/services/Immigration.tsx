@@ -135,7 +135,7 @@ export default function Immigration() {
             <div className="max-w-4xl">
               {/* Animated logo and title */}
               <div className="flex items-center space-x-4 mb-6 animate-fade-in">
-                <Logo size="lg" />
+                <Logo size="lg" serviceType="immigration" />
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight">{getContent('immigrationTitle')}</h1>
               </div>
               
@@ -144,7 +144,8 @@ export default function Immigration() {
                 {getContent('immigrationSubtitle')}
               </p>
               
-              {/* Call-to-action buttons */}
+              {/* Call-to-action but
+              tons */}
               <div className="flex flex-wrap gap-4 animate-fade-in-delay-2">
                 {/* Registration link with encoded service parameter */}
                 <Link
