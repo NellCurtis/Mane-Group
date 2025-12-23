@@ -5,13 +5,13 @@ import { ArrowRight, CheckCircle, Palette, Layers, Image, Video } from 'lucide-r
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const getBannerImages = () => [
-  'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3183194/pexels-photo-3183194.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184468/pexels-photo-3184468.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/Design/des1.jpg',
+  '/images/Design/des2.jpg',
+  '/images/Design/des3.jpg',
+  '/images/Design/des4.jpg',
+  '/images/Design/des5.jpg',
+  '/images/Design/des6.jpg',
+  '/images/Design/des7.jpg'
 ];
 
 export default function GraphicDesign() {
@@ -55,7 +55,7 @@ export default function GraphicDesign() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[650px]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">

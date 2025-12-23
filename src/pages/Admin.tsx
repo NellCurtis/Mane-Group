@@ -14,7 +14,7 @@ interface ContentItem {
   key: string;
   englishText: string;
   frenchText: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
 }
 
 /**
@@ -27,7 +27,7 @@ interface ContentVersion {
   version: number;
   englishText: string;
   frenchText: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   createdBy: string;
   createdAt: string;
 }
@@ -36,7 +36,9 @@ interface ContentVersion {
  * Interface for editable content (without ID)
  * Used for form inputs when editing content
  */
-interface EditableContent extends Omit<ContentItem, 'id'> {}
+interface EditableContent extends Omit<ContentItem, 'id'> {
+  imageUrl?: string | null;
+}
 
 /**
  * Interface for registration data
@@ -103,7 +105,7 @@ export default function Admin() {
     key: '', 
     englishText: '', 
     frenchText: '',
-    imageUrl: '' 
+    imageUrl: null 
   });
   const [selectedContentItemId, setSelectedContentItemId] = useState<string | null>(null);
   
@@ -314,7 +316,8 @@ export default function Admin() {
         // Contact page content
         { section: 'contact-hero', key: 'title', englishText: 'Contact Us', frenchText: 'Contactez-Nous' },
         { section: 'contact-hero', key: 'subtitle', englishText: 'We\'re here to help you achieve your goals', frenchText: 'Nous sommes ici pour vous aider à atteindre vos objectifs' },
-        { section: 'contact', key: 'map', englishText: '', frenchText: '', imageUrl: '' }
+        { section: 'contact', key: 'map', englishText: '', frenchText: '', imageUrl: null },
+                { section: 'contact', key: 'address', englishText: '123 Business Street, City, Country', frenchText: '123 Rue des Affaires, Ville, Pays', imageUrl: null }
       ];
 
       // Insert sample content into database
@@ -461,7 +464,7 @@ export default function Admin() {
         key: content.key,
         englishText: content.englishText,
         frenchText: content.frenchText,
-        imageUrl: content.imageUrl || ''
+        imageUrl: content.imageUrl || null
       });
     }
   };
@@ -514,7 +517,7 @@ export default function Admin() {
       if (error) throw error;
 
       setContentEditingId(null);
-      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: '' });
+      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: null });
       setSelectedFile(null);
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -575,7 +578,7 @@ export default function Admin() {
 
       if (error) throw error;
 
-      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: '' });
+      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: null });
       setSelectedFile(null);
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -1166,7 +1169,7 @@ export default function Admin() {
                   <button
                     onClick={() => {
                       setContentEditingId(null);
-                      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: '' });
+                      setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: null });
                       setSelectedFile(null);
                       if (fileInputRef.current) {
                         fileInputRef.current.value = '';

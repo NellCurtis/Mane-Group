@@ -4,7 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { supabase } from '../lib/supabase';
 
 export default function Contact() {
-  const { translations } = useLanguage();
+  const { translations, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,30 +16,43 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [mapUrl, setMapUrl] = useState<string | null>(null);
+  const [address, setAddress] = useState<string>('');
 
   useEffect(() => {
-    fetchMapUrl();
-  }, []);
+    fetchContactInfo();
+  }, [language]);
 
-  const fetchMapUrl = async () => {
+  const fetchContactInfo = async () => {
     try {
-      const { data, error } = await supabase
+      // Fetch map URL
+      const { data: mapData, error: mapError } = await supabase
         .from('content')
         .select('imageUrl')
         .eq('section', 'contact')
         .eq('key', 'map')
         .single();
 
-      if (error) {
-        console.warn('Failed to fetch map URL:', error.message);
-        return;
+      if (mapError) {
+        console.warn('Failed to fetch map URL:', mapError.message);
+      } else if (mapData && mapData.imageUrl) {
+        setMapUrl(mapData.imageUrl);
       }
 
-      if (data && data.imageUrl) {
-        setMapUrl(data.imageUrl);
+      // Fetch address
+      const { data: addressData, error: addressError } = await supabase
+        .from('content')
+        .select('englishText, frenchText')
+        .eq('section', 'contact')
+        .eq('key', 'address')
+        .single();
+
+      if (addressError) {
+        console.warn('Failed to fetch address:', addressError.message);
+      } else if (addressData) {
+        setAddress(language === 'en' ? addressData.englishText : addressData.frenchText);
       }
     } catch (error) {
-      console.error('Error fetching map URL:', error);
+      console.error('Error fetching contact info:', error);
     }
   };
 
@@ -329,23 +342,16 @@ export default function Contact() {
 
             <div>
               <h2 className="text-3xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                {translations.contactPageLocation || 'Our Location'}
+                {translations.contactPageAddress || 'Our Address'}
               </h2>
-              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md mb-6" style={{ height: '400px' }}>
-                {mapUrl ? (
-                  <iframe
-                    src={mapUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={translations.contactMapTitle || "MANÉ GROUP Location"}
-                  />
+              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md mb-6 p-6">
+                {address ? (
+                  <div className="flex items-center justify-center h-full">
+                    <p className="text-lg text-gray-700 text-center">{address}</p>
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center h-full bg-gray-200 text-gray-500">
-                    <p>{translations.contactPageMapUnavailable || "Map unavailable. Please configure in admin panel."}</p>
+                    <p>{translations.contactPageAddressUnavailable || "Address unavailable. Please configure in admin panel."}</p>
                   </div>
                 )}
               </div>

@@ -6,8 +6,6 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
-import CelebrationModal from './components/CelebrationModal';
-
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
 const Immigration = lazy(() => import('./pages/services/Immigration'));
@@ -33,16 +31,6 @@ const LoadingSpinner = () => (
  * It manages routing, providers, layout, and global state
  */
 export default function App() {
-  const [showCelebration, setShowCelebration] = useState(false);
-
-  // Effect to show celebration modal on first visit
-  useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-      setShowCelebration(true);
-      localStorage.setItem('hasVisited', 'true');
-    }
-  }, []);
 
   return (
     // Wrap entire app with providers for language and authentication
@@ -50,11 +38,6 @@ export default function App() {
       <LanguageProvider>
         {/* Browser router for SPA navigation */}
         <Router>
-          {/* Celebration modal for first-time visitors */}
-          {showCelebration && (
-            <CelebrationModal isVisible={showCelebration} onClose={() => setShowCelebration(false)} />
-          )}
-          
           {/* Flex container for sticky footer layout */}
           <div className="flex flex-col min-h-screen">
             {/* Header component visible on all pages */}

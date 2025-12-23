@@ -5,12 +5,12 @@ import { ArrowRight, CheckCircle, BookOpen, Users, Globe, Trophy } from 'lucide-
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const getBannerImages = () => [
-  'https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/6325984/pexels-photo-6325984.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/5198239/pexels-photo-5198239.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/5212321/pexels-photo-5212321.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/5212325/pexels-photo-5212325.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/Linguistic/ling1.jpg',
+  '/images/Linguistic/ling2.jpg',
+  '/images/Linguistic/ling3.jpg',
+  '/images/Linguistic/ling1.jpg',
+  '/images/Linguistic/ling2.jpg',
+  '/images/Linguistic/ling3.jpg'
 ];
 
 export default function Languages() {
@@ -50,7 +50,7 @@ export default function Languages() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[650px]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">

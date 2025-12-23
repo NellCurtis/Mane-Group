@@ -5,14 +5,13 @@ import { ArrowRight, CheckCircle, Car, Clock, Award, MapPin, Users, Star, Shield
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const getBannerImages = () => [
-  'https://images.pexels.com/photos/1028746/pexels-photo-1028746.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1687147/pexels-photo-1687147.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/2064709/pexels-photo-2064709.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/2064711/pexels-photo-2064711.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/Auto ecole/Auto1.jpg',
+  '/images/Auto ecole/Auto2.jpg',
+  '/images/Auto ecole/Auto3.jpg',
+  '/images/Auto ecole/Auto4.jpg',
+  '/images/Auto ecole/Auto5.jpg',
+  '/images/Auto ecole/Auto6.jpg',
+  '/images/Auto ecole/Auto7.jpg'
 ];
 
 export default function DrivingSchool() {
@@ -54,7 +53,7 @@ export default function DrivingSchool() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[650px]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
@@ -158,9 +157,9 @@ export default function DrivingSchool() {
               {courses.map((course, index) => (
                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-4" style={{ color: '#0A3D91' }}>{translations[course.categoryKey] || course.categoryKey}</h3>
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: '#0A3D91' }}>{translations[course.categoryKey as keyof typeof translations] || course.categoryKey}</h3>
                     <ul className="space-y-2">
-                      {(translations[course.detailsKey] || []).map((detail: string, detailIndex: number) => (
+                      {(translations[course.detailsKey as keyof typeof translations] || []).map((detail: string, detailIndex: number) => (
                         <li key={detailIndex} className="flex items-start">
                           <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-700">{detail}</span>

@@ -5,13 +5,13 @@ import { ArrowRight, CheckCircle, Code, Cloud, Smartphone, Database } from 'luci
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const getBannerImages = () => [
-  'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3183165/pexels-photo-3183165.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184285/pexels-photo-3184285.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184305/pexels-photo-3184305.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/innovation/inno1.jpg',
+  '/images/innovation/inno2.jpg',
+  '/images/innovation/inno3.jpg',
+  '/images/innovation/inno4.jpg',
+  '/images/innovation/inno5.jpg',
+  '/images/innovation/inno6.jpg',
+  '/images/innovation/inno7.jpg'
 ];
 
 export default function Innovation() {
@@ -55,7 +55,7 @@ export default function Innovation() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[650px]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">

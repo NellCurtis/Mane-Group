@@ -12,9 +12,9 @@ import { useLanguage } from '../contexts/LanguageContext';
  * High-quality professional images representing the company's services
  */
 const heroImages = [
-  'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/hero/hero1.jpg',
+  '/images/hero/hero2.jpg',
+  '/images/hero/hero3.jpg'
 ];
 
 /**
@@ -41,9 +41,9 @@ const services: Service[] = [
     title: 'MANÉ Immigration',
     descriptionKey: 'immigrationDescription',
     images: [
-      'https://images.pexels.com/photos/7887800/pexels-photo-7887800.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/4427610/pexels-photo-4427610.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      '/images/immigration/immi.jpg',
+      '/images/immigration/immi1.jpg',
+      '/images/immigration/immi2.jpg'
     ],
     icon: Globe,
     link: '/services/immigration'
@@ -53,9 +53,9 @@ const services: Service[] = [
     title: 'Auto-École Mane d\'Afrique',
     descriptionKey: 'drivingSchoolDescription',
     images: [
-      'https://images.pexels.com/photos/1028746/pexels-photo-1028746.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1687147/pexels-photo-1687147.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      '/images/Auto ecole/Auto1.jpg',
+      '/images/Auto ecole/Auto2.jpg',
+      '/images/Auto ecole/Auto3.jpg'
     ],
     icon: GraduationCap,
     link: '/services/driving-school'
@@ -65,9 +65,9 @@ const services: Service[] = [
     title: 'Mane Multi-Linguistique',
     descriptionKey: 'languagesDescription',
     images: [
-      'https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/6325984/pexels-photo-6325984.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/5198239/pexels-photo-5198239.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      '/images/Linguistic/ling1.jpg',
+      '/images/Linguistic/ling2.jpg',
+      '/images/Linguistic/ling3.jpg'
     ],
     icon: Languages,
     link: '/services/languages'
@@ -77,9 +77,9 @@ const services: Service[] = [
     title: 'Mane Innovation',
     descriptionKey: 'innovationDescription',
     images: [
-      'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/3183165/pexels-photo-3183165.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      '/images/innovation/inno1.jpg',
+      '/images/innovation/inno2.jpg',
+      '/images/innovation/inno3.jpg'
     ],
     icon: Lightbulb,
     link: '/services/innovation'
@@ -89,9 +89,9 @@ const services: Service[] = [
     title: 'Mane Graphic Design',
     descriptionKey: 'graphicDesignDescription',
     images: [
-      'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      '/images/Design/des1.jpg',
+      '/images/Design/des2.jpg',
+      '/images/Design/des3.jpg'
     ],
     icon: Palette,
     link: '/services/graphic-design'
@@ -136,7 +136,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero section with full-width image slider */}
       <section className="relative">
-        <ImageSlider images={heroImages} height="h-[600px]" />
+        <ImageSlider images={heroImages} height="h-[70vh]" />
         {/* Overlay with company branding and call-to-action */}
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl">
@@ -173,7 +173,7 @@ export default function Home() {
           {/* Section header with title and description */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#0A3D91]">
-              <span className="font-extrabold">MANE</span> {translations.homeServicesTitle}
+              <span className="font-extrabold"></span> {translations.homeServicesTitle}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {translations.homeServicesDescription}
@@ -195,7 +195,7 @@ export default function Home() {
                   <div className={index % 2 === 1 ? 'md:order-2' : ''}>
                     <ImageSlider
                       images={service.images}
-                      height="h-80"
+                      height="h-64"
                       autoPlay={true}
                       interval={4000}
                     />
@@ -274,9 +274,9 @@ export default function Home() {
             {/* Company image */}
             <div>
               <img
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="/images/hero/hero2.jpg"
                 alt={translations.homeAboutImageAlt || "About MANÉ GROUP"}
-                className="rounded-lg shadow-xl w-full h-96 object-cover transition-transform duration-300 hover:scale-105"
+                className="rounded-lg shadow-xl w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
               />
             </div>
           </div>

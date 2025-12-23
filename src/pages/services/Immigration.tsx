@@ -12,11 +12,11 @@ import { supabase } from '../../lib/supabase';
  * @returns Array of image URLs for the banner slider
  */
 const getBannerImages = (_language: string) => [
-  'https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184286/pexels-photo-3184286.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  '/images/immigration/immi.jpg',
+  '/images/immigration/immi1.jpg',
+  '/images/immigration/immi2.jpg',
+  '/images/immigration/immi3.jpg',
+  '/images/immigration/immi4.jpg'
 ];
 
 /**
@@ -127,7 +127,7 @@ export default function Immigration() {
       {/* Hero section with image slider and gradient overlay */}
       <section className="relative overflow-hidden">
         {/* Image slider component showing multiple banner images */}
-        <ImageSlider images={bannerImages} height="h-[600px]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" />
         
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A3D91]/90 via-[#0055A4]/80 to-[#D6001C]/70 flex items-center">
@@ -197,9 +197,9 @@ export default function Immigration() {
                   {/* Full-width image for visual appeal */}
                   <div className="my-8 rounded-lg overflow-hidden shadow-lg">
                     <img 
-                      src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                      src="/images/immigration/immi6.jpg" 
                       alt="Immigration Services" 
-                      className="w-full h-64 object-cover"
+                      className="w-full h-60 object-cover rounded-lg shadow-md"
                       loading="lazy"
                     />
                   </div>
@@ -230,9 +230,9 @@ export default function Immigration() {
       {/* Full-width banner image for visual separation */}
       <div className="my-8 rounded-lg overflow-hidden shadow-lg mx-auto max-w-7xl">
         <img 
-          src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+          src="/images/immigration/immi2.jpg" 
           alt="Immigration Process" 
-          className="w-full h-96 object-cover"
+          className="w-full h-80 object-cover rounded-lg shadow-lg"
           loading="lazy"
         />
       </div>
@@ -314,15 +314,15 @@ export default function Immigration() {
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <img
-                  src="https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="/images/immigration/immi1.jpg"
                   alt="Immigration Success"
-                  className="rounded-lg shadow-xl w-full h-full object-cover"
+                  className="rounded-lg shadow-lg w-full h-48 object-cover"
                   loading="lazy"
                 />
                 <img
-                  src="https://images.pexels.com/photos/3184290/pexels-photo-3184290.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="/images/immigration/immi3.jpg"
                   alt="Family Reunion"
-                  className="rounded-lg shadow-xl w-full h-full object-cover mt-6 md:mt-0"
+                  className="rounded-lg shadow-lg w-full h-48 object-cover mt-6 md:mt-0"
                   loading="lazy"
                 />
               </div>
