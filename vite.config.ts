@@ -14,8 +14,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'react-router': ['react-router-dom'],
           'supabase': ['@supabase/supabase-js'],
-          'ui-icons': ['lucide-react'],
-          'common': ['react', 'react-dom', 'react-router-dom']
+          'ui-icons': ['lucide-react']
         }
       }
     },
