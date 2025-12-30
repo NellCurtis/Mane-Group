@@ -129,8 +129,8 @@ export default function ImageSlider({
               src={image}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === currentIndex ? "high" : "low"}
+              loading={index === currentIndex ? "eager" : "lazy"}
+              fetchPriority={index === currentIndex ? "high" : "auto"}
               decoding="async"
               onError={(e) => {
                 // Handle broken images gracefully

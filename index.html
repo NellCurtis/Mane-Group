@@ -23,9 +23,11 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="/images/hero/hero1.jpg">
-    <link rel="preload" as="image" href="/images/hero/hero2.jpg">
-    <link rel="preload" as="image" href="/images/hero/hero3.jpg">
+    <link rel="preconnect" href="https://*.supabase.co">
+    <link rel="dns-prefetch" href="https://*.supabase.co">
+    <link rel="preload" as="image" href="/images/hero/hero1.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero/hero2.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero/hero3.jpg" fetchpriority="high">
 </head>
   <body>
     <div id="root"></div>

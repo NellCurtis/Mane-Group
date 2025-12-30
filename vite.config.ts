@@ -15,10 +15,17 @@ export default defineConfig({
           'react-router': ['react-router-dom'],
           'supabase': ['@supabase/supabase-js'],
           'ui-icons': ['lucide-react']
-        }
+        },
+        // Optimize for smaller chunks
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'assets/[name].[hash].[ext]';
+          }
+          return 'assets/[name].[hash].[ext]';
+        },
       }
     },
     cssCodeSplit: true,
-    target: 'es2015'
-  }
+    target: 'es2015',
+  },
 });
