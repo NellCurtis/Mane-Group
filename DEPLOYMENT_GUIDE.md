@@ -201,6 +201,20 @@ If you continue to experience issues:
 2. Review the network tab for failed requests
 3. Contact your development team for assistance
 
+## Performance Optimization
+
+### Bundle Size Reduction
+The project has been optimized by:
+- Removing unused dependencies (recharts, canvas-confetti)
+- Implementing dynamic imports for heavy libraries (xlsx, jsPDF, docx)
+- Using lazy loading for all pages
+
+### CDN Optimization
+For optimal global performance:
+1. Deploy to a CDN provider like Cloudflare
+2. Enable gzip/brotli compression
+3. Set appropriate cache headers for static assets
+
 ## Maintenance
 
 ### Regular Tasks
@@ -212,12 +226,18 @@ If you continue to experience issues:
    ```
 3. **Monitor usage** through your hosting platform dashboards
 4. **Review analytics** to understand user behavior
+5. **Check bundle size** regularly:
+   ```bash
+   npm run build
+   npm run preview
+   ```
 
 ### Security Best Practices
 1. Keep Supabase credentials secure
 2. Regularly rotate API keys
 3. Monitor access logs
 4. Keep your deployment platform updated
+5. Use HTTPS for all connections
 
 ---
 

@@ -127,7 +127,7 @@ export default function Immigration() {
       {/* Hero section with image slider and gradient overlay */}
       <section className="relative overflow-hidden">
         {/* Image slider component showing multiple banner images */}
-        <ImageSlider images={bannerImages} height="h-[70vh]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" autoPlay={false} />
         
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A3D91]/90 via-[#0055A4]/80 to-[#D6001C]/70 flex items-center">

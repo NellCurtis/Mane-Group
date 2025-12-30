@@ -67,11 +67,10 @@ export default function ImageSlider({
    * Loads images only when they're about to be displayed
    */
   useEffect(() => {
-    // Preload the current image and the next/previous images
+    // Preload the current image and the next image
     const preloadIndices = [
       currentIndex,
-      (currentIndex + 1) % images.length,
-      (currentIndex - 1 + images.length) % images.length
+      (currentIndex + 1) % images.length
     ];
 
     preloadIndices.forEach(index => {
@@ -130,13 +129,16 @@ export default function ImageSlider({
               src={image}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
-              loading={index === currentIndex ? "eager" : "lazy"}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === currentIndex ? "high" : "low"}
+              decoding="async"
               onError={(e) => {
                 // Handle broken images gracefully
                 const target = e.target as HTMLImageElement;
                 target.src = '/images/placeholder.jpg'; // Fallback image
                 target.alt = 'Image not available';
               }}
+              sizes="100vw"
             />
           </div>
         ))}

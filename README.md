@@ -74,8 +74,6 @@ This application is designed with scalability, maintainability, and performance 
 
 ### Additional Libraries
 - **Lucide React** - Beautiful, consistent icon set
-- **Recharts** - Declarative charting library built on D3
-- **Canvas Confetti** - High-performance confetti effects
 - **Framer Motion** - Production-ready motion library for React
 
 ## Prerequisites

@@ -20,8 +20,8 @@ const Admin = lazy(() => import('./pages/Admin'));
 const Register = lazy(() => import('./pages/Register'));
 // Loading component for lazy-loaded pages
 const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2" style={{ borderColor: '#0A3D91' }}></div>
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4" style={{ borderColor: '#0A3D91' }}></div>
   </div>
 );
 

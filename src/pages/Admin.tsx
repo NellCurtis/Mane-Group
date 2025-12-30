@@ -4,6 +4,7 @@ import { Download, Trash2, Eye, EyeOff, CheckCircle, Edit3, Save, X, Plus, LogOu
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 
+
 /**
  * Interface for content management items
  * Defines the structure for editable content in the CMS
@@ -114,6 +115,9 @@ export default function Admin() {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Export dropdown state
+  const [showExportDropdown, setShowExportDropdown] = useState(false);
   
   // Access translations and current language
   const { translations, language } = useLanguage();
@@ -451,6 +455,158 @@ export default function Admin() {
     document.body.removeChild(link);
   };
 
+  const exportToExcel = async () => {
+    // Dynamically import xlsx library only when needed
+    const { utils, writeFile } = await import('xlsx');
+    
+    const wsData = [
+      ['Name', 'Email', 'Phone', 'Country', 'Service', 'Message', 'Date'],
+      ...registrations.map(reg => [
+        reg.full_name,
+        reg.email,
+        reg.phone,
+        reg.country,
+        reg.service,
+        reg.message,
+        new Date(reg.created_at).toLocaleDateString()
+      ])
+    ];
+    
+    const ws = utils.aoa_to_sheet(wsData);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, 'Registrations');
+    
+    writeFile(wb, `registrations-${new Date().toISOString().split('T')[0]}.xlsx`);
+  };
+
+  const exportToPDF = async () => {
+    // Dynamically import jsPDF and jspdf-autotable only when needed
+    const jsPDF = (await import('jspdf')).default;
+    await import('jspdf-autotable');
+    
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text('Registrations Report', 14, 20);
+    
+    doc.setFontSize(12);
+    doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 30);
+    
+    // Prepare data for the table
+    const tableData = registrations.map(reg => [
+      reg.full_name,
+      reg.email,
+      reg.phone,
+      reg.country,
+      reg.service,
+      reg.message,
+      new Date(reg.created_at).toLocaleDateString()
+    ]);
+    
+    // Add the table to the PDF
+    (doc as any).autoTable({
+      head: [['Name', 'Email', 'Phone', 'Country', 'Service', 'Message', 'Date']],
+      body: tableData,
+      startY: 40,
+      styles: {
+        fontSize: 10,
+        cellPadding: 5
+      },
+      headStyles: {
+        fillColor: [10, 61, 145], // #0A3D91
+        textColor: [255, 255, 255],
+        fontSize: 11
+      }
+    });
+    
+    doc.save(`registrations-${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
+  const exportToDOC = async () => {
+    // Dynamically import docx library only when needed
+    const { Document, Packer, Paragraph, Table, TableRow, TableCell, HeadingLevel } = await import('docx');
+    
+    // Create a document with registration data
+    const docData = [
+      {
+        text: 'Registrations Report',
+        heading: HeadingLevel.HEADING_1,
+      },
+      {
+        text: `Generated on: ${new Date().toLocaleString()}`,
+        heading: HeadingLevel.HEADING_2,
+      },
+      // Create a table for the registrations
+      new Table({
+        rows: [
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [new Paragraph('Name')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Email')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Phone')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Country')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Service')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Message')]
+              }),
+              new TableCell({
+                children: [new Paragraph('Date')]
+              })
+            ]
+          }),
+          ...registrations.map(reg => new TableRow({
+            children: [
+              new TableCell({ children: [new Paragraph(reg.full_name)] }),
+              new TableCell({ children: [new Paragraph(reg.email)] }),
+              new TableCell({ children: [new Paragraph(reg.phone)] }),
+              new TableCell({ children: [new Paragraph(reg.country)] }),
+              new TableCell({ children: [new Paragraph(reg.service)] }),
+              new TableCell({ children: [new Paragraph(reg.message)] }),
+              new TableCell({ children: [new Paragraph(new Date(reg.created_at).toLocaleDateString())] })
+            ]
+          }))
+        ]
+      })
+    ];
+    
+    const doc = new Document({
+      sections: [{
+        properties: {},
+        children: docData.map(item => {
+          if (item instanceof Table) {
+            return item;
+          } else {
+            return new Paragraph({
+              text: item.text,
+              heading: item.heading
+            });
+          }
+        })
+      }]
+    });
+    
+    // Generate and download the document
+    const blob = await Packer.toBlob(doc);
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `registrations-${new Date().toISOString().split('T')[0]}.docx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   /**
    * Function to handle content edit button clicks
    * Populates edit form with existing content data
@@ -498,7 +654,8 @@ export default function Admin() {
           englishText: existingContent.englishText,
           frenchText: existingContent.frenchText,
           imageUrl: existingContent.imageUrl,
-          createdBy: user?.id || 'unknown'
+          createdBy: user?.id || '',
+          createdAt: new Date().toISOString()
         }]);
       }
 
@@ -518,32 +675,9 @@ export default function Admin() {
 
       setContentEditingId(null);
       setContentEditForm({ section: '', key: '', englishText: '', frenchText: '', imageUrl: null });
-      setSelectedFile(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
       await fetchContentItems();
-      await fetchContentVersions();
     } catch (error) {
       console.error('Error saving content:', error);
-    }
-  };
-
-  /**
-   * Function to delete a content item
-   * Removes record from database and updates local state
-   */
-  const deleteContentItem = async (id: string) => {
-    try {
-      const { error } = await supabase
-        .from('content')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
-      await fetchContentItems();
-    } catch (error) {
-      console.error('Error deleting content item:', error);
     }
   };
 
@@ -588,6 +722,95 @@ export default function Admin() {
       console.error('Error adding content item:', error);
     }
   };
+
+  /**
+   * Function to delete a content item
+   * Removes record from database and updates local state
+   */
+  const deleteContentItem = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('content')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      await fetchContentItems();
+    } catch (error) {
+      console.error('Error deleting content:', error);
+    }
+  };
+
+  /**
+   * Function to handle file input changes
+   * Updates selected file state
+   */
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  /**
+   * Function to handle image preview
+   * Generates a preview URL for the selected image
+   */
+  const handleImagePreview = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const previewUrl = e.target?.result as string;
+        setContentEditForm(prev => ({ ...prev, imageUrl: previewUrl }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  /**
+   * Function to handle image upload button click
+   * Triggers file input click event
+   */
+  const handleImageUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  /**
+   * Function to handle image removal
+   * Clears selected file and image preview
+   */
+  const handleImageRemove = () => {
+    setSelectedFile(null);
+    setContentEditForm(prev => ({ ...prev, imageUrl: null }));
+  };
+
+  /**
+   * Function to handle content version selection
+   * Populates edit form with selected version data
+   */
+  const handleVersionSelect = (version: ContentVersion) => {
+    // Find the original content item to get section and key
+    const originalContent = contentItems.find(c => c.id === version.contentItemId);
+    
+    setContentEditingId(version.contentItemId);
+    setContentEditForm({
+      section: originalContent?.section || '',
+      key: originalContent?.key || '',
+      englishText: version.englishText,
+      frenchText: version.frenchText,
+      imageUrl: version.imageUrl || null
+    });
+  };
+
+  /**
+   * Function to handle tab navigation
+   * Updates active tab state
+   */
+  const handleTabChange = (tab: 'registrations' | 'content' | 'messages' | 'immigration' | 'driving-school' | 'languages' | 'innovation' | 'graphic-design' | 'content-versions' | 'users') => {
+    setActiveTab(tab);
+  };
+
 
   /**
    * Function to view versions of a content item
@@ -826,14 +1049,66 @@ export default function Admin() {
               <h2 className="text-xl font-semibold" style={{ color: '#0A3D91' }}>
                 {translations.adminRegistrations}
               </h2>
-              <button
-                onClick={exportToCSV}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white"
-                style={{ backgroundColor: '#0A3D91' }}
-              >
-                <Download className="h-4 w-4 mr-2" />
-                {translations.exportToCSV}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setShowExportDropdown(!showExportDropdown)}
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white"
+                  style={{ backgroundColor: '#0A3D91' }}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  {translations.exportToCSV}
+                  <svg className="-mr-1 ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {showExportDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                    <div className="py-1" role="menu">
+                      <button
+                        onClick={() => {
+                          exportToCSV();
+                          setShowExportDropdown(false);
+                        }}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                        role="menuitem"
+                      >
+                        Export as CSV
+                      </button>
+                      <button
+                        onClick={() => {
+                          exportToExcel();
+                          setShowExportDropdown(false);
+                        }}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                        role="menuitem"
+                      >
+                        Export as Excel
+                      </button>
+                      <button
+                        onClick={() => {
+                          exportToPDF();
+                          setShowExportDropdown(false);
+                        }}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                        role="menuitem"
+                      >
+                        Export as PDF
+                      </button>
+                      <button
+                        onClick={() => {
+                          exportToDOC();
+                          setShowExportDropdown(false);
+                        }}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                        role="menuitem"
+                      >
+                        Export as DOC
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
               
             <div className="overflow-x-auto">

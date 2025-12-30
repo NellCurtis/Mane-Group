@@ -136,7 +136,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero section with full-width image slider */}
       <section className="relative">
-        <ImageSlider images={heroImages} height="h-[70vh]" />
+        <ImageSlider images={heroImages} height="h-[70vh]" autoPlay={false} />
         {/* Overlay with company branding and call-to-action */}
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl">
@@ -196,7 +196,7 @@ export default function Home() {
                     <ImageSlider
                       images={service.images}
                       height="h-64"
-                      autoPlay={true}
+                      autoPlay={false}
                       interval={4000}
                     />
                   </div>

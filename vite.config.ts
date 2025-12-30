@@ -5,19 +5,21 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', '@supabase/supabase-js', 'lucide-react', 'canvas-confetti']
+    include: ['react', 'react-dom', 'react-router-dom', '@supabase/supabase-js', 'lucide-react']
   },
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          supabase: ['@supabase/supabase-js'],
-          ui: ['lucide-react'],
-          effects: ['canvas-confetti']
+          'react-vendor': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
+          'supabase': ['@supabase/supabase-js'],
+          'ui-icons': ['lucide-react'],
+          'common': ['react', 'react-dom', 'react-router-dom']
         }
       }
-    }
+    },
+    cssCodeSplit: true,
+    target: 'es2015'
   }
 });

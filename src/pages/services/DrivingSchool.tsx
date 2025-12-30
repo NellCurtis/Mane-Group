@@ -53,7 +53,7 @@ export default function DrivingSchool() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[70vh]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" autoPlay={false} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
@@ -157,9 +157,9 @@ export default function DrivingSchool() {
               {courses.map((course, index) => (
                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-4" style={{ color: '#0A3D91' }}>{translations[course.categoryKey as keyof typeof translations] || course.categoryKey}</h3>
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: '#0A3D91' }}>{typeof translations[course.categoryKey as keyof typeof translations] === 'string' ? translations[course.categoryKey as keyof typeof translations] as string : course.categoryKey}</h3>
                     <ul className="space-y-2">
-                      {(translations[course.detailsKey as keyof typeof translations] || []).map((detail: string, detailIndex: number) => (
+                      {(translations[course.detailsKey as keyof typeof translations] as string[] || []).map((detail: string, detailIndex: number) => (
                         <li key={detailIndex} className="flex items-start">
                           <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-700">{detail}</span>

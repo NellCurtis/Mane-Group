@@ -50,7 +50,7 @@ export default function Languages() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[70vh]" />
+        <ImageSlider images={bannerImages} height="h-[70vh]" autoPlay={false} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
