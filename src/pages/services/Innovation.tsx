@@ -27,7 +27,7 @@ export default function Innovation() {
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
   
   const fetchContent = async () => {
     try {
@@ -82,12 +82,12 @@ export default function Innovation() {
   
   // Using a completely generic approach to avoid TypeScript errors
   const features = [
-    { icon: Code, title: getContent('feature1Title') || 'Custom Software Development', description: getContent('feature1Description') || 'Bespoke software solutions engineered to address your unique business challenges and objectives.' },
-    { icon: Cloud, title: getContent('feature2Title') || 'Mobile Application Creation', description: getContent('feature2Description') || 'Native and cross-platform mobile applications designed for optimal user engagement and performance.' },
-    { icon: Smartphone, title: getContent('feature3Title') || 'Data Analytics & Insights', description: getContent('feature3Description') || 'Transform data into actionable business insights through advanced analytics and visualization tools.' },
-    { icon: Database, title: getContent('feature4Title') || 'Cloud Infrastructure', description: getContent('feature4Description') || 'Scalable cloud infrastructure solutions that ensure reliability, security, and cost-effectiveness.' },
-    { icon: Code, title: getContent('feature5Title') || 'AI & Machine Learning', description: getContent('feature5Description') || 'Intelligent automation and predictive modeling to drive innovation and competitive advantage.' },
-    { icon: Cloud, title: getContent('feature6Title') || 'Digital Transformation Strategy', description: getContent('feature6Description') || 'Comprehensive digital strategy consulting to align technology with business goals and growth.' }
+    { icon: Code, title: getContent('feature1Title') || translations.innovationFeature1Title || 'Custom Software Development', description: getContent('feature1Description') || translations.innovationFeature1Desc || 'Bespoke software solutions engineered to address your unique business challenges and objectives.' },
+    { icon: Cloud, title: getContent('feature2Title') || translations.innovationFeature2Title || 'Mobile Application Creation', description: getContent('feature2Description') || translations.innovationFeature2Desc || 'Native and cross-platform mobile applications designed for optimal user engagement and performance.' },
+    { icon: Smartphone, title: getContent('feature3Title') || translations.innovationFeature3Title || 'Data Analytics & Insights', description: getContent('feature3Description') || translations.innovationFeature3Desc || 'Transform data into actionable business insights through advanced analytics and visualization tools.' },
+    { icon: Database, title: getContent('feature4Title') || translations.innovationFeature4Title || 'Cloud Infrastructure', description: getContent('feature4Description') || translations.innovationFeature4Desc || 'Scalable cloud infrastructure solutions that ensure reliability, security, and cost-effectiveness.' },
+    { icon: Code, title: getContent('feature5Title') || translations.innovationFeature5Title || 'AI & Machine Learning', description: getContent('feature5Description') || translations.innovationFeature5Desc || 'Intelligent automation and predictive modeling to drive innovation and competitive advantage.' },
+    { icon: Cloud, title: getContent('feature6Title') || translations.innovationFeature6Title || 'Digital Transformation Strategy', description: getContent('feature6Description') || translations.innovationFeature6Desc || 'Comprehensive digital strategy consulting to align technology with business goals and growth.' }
   ];
 
   const services = [
@@ -134,14 +134,14 @@ export default function Innovation() {
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105"
                   style={{ backgroundColor: '#D6001C' }}
                 >
-                  Apply Now
+                  {translations.innovationApplyNow || 'Apply Now'}
                   <Code className="ml-2 h-5 w-5" />
                 </Link>
                 <a
                   href="#services"
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl border-2 border-white text-white"
                 >
-                  Our Technology Services
+                  {translations.innovationOurServices || 'Our Technology Services'}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </div>
@@ -169,10 +169,10 @@ export default function Innovation() {
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                  Our Technology Services
+                  {translations.innovationServices || 'Our Technology Services'}
                 </h3>
                 <p className="text-gray-700 mb-6">
-                  Technology solutions and digital transformation services for businesses. We deliver cutting-edge software development, IT consulting, and innovative solutions to help your business thrive in the digital age.
+                  {translations.innovationServicesDescription || 'Technology solutions and digital transformation services for businesses. We deliver cutting-edge software development, IT consulting, and innovative solutions to help your business thrive in the digital age.'}
                 </p>
                 <img 
                   src={getImage('codeImage')} 
@@ -190,10 +190,10 @@ export default function Innovation() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
-                Innovation in Action
+                {translations.innovationGalleryHeading || 'Innovation in Action'}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience our cutting-edge technology solutions and digital transformation services
+                {translations.innovationGalleryDescription || 'Experience our cutting-edge technology solutions and digital transformation services'}
               </p>
             </div>
             
@@ -206,8 +206,8 @@ export default function Innovation() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Mobile Solutions</h3>
-                  <p className="text-gray-600">Native and cross-platform mobile applications</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.innovationMobileCardTitle || 'Mobile Solutions'}</h3>
+                  <p className="text-gray-600">{translations.innovationMobileCardDesc || 'Native and cross-platform mobile applications'}</p>
                 </div>
               </div>
               
@@ -219,8 +219,8 @@ export default function Innovation() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Cloud Infrastructure</h3>
-                  <p className="text-gray-600">Scalable cloud solutions for your business needs</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.innovationCloudCardTitle || 'Cloud Infrastructure'}</h3>
+                  <p className="text-gray-600">{translations.innovationCloudCardDesc || 'Scalable cloud solutions for your business needs'}</p>
                 </div>
               </div>
               
@@ -232,8 +232,8 @@ export default function Innovation() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>AI & ML Solutions</h3>
-                  <p className="text-gray-600">Intelligent automation and predictive modeling</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.innovationAICardTitle || 'AI & ML Solutions'}</h3>
+                  <p className="text-gray-600">{translations.innovationAICardDesc || 'Intelligent automation and predictive modeling'}</p>
                 </div>
               </div>
             </div>
@@ -271,10 +271,10 @@ export default function Innovation() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
-                Our Technology Services
+                {translations.innovationServices || 'Our Technology Services'}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Technology solutions and digital transformation services for businesses. We deliver cutting-edge software development, IT consulting, and innovative solutions to help your business thrive in the digital age.
+                {translations.innovationServicesDescription || 'Technology solutions and digital transformation services for businesses. We deliver cutting-edge software development, IT consulting, and innovative solutions to help your business thrive in the digital age.'}
               </p>
             </div>
             
@@ -304,17 +304,17 @@ export default function Innovation() {
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-              Ready to Innovate Your Business?
+              {translations.innovationCtaHeading || 'Ready to Innovate Your Business?'}
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Partner with us to leverage technology for unprecedented business growth and innovation.
+              {translations.innovationCallToActionDescription || 'Partner with us to leverage technology for unprecedented business growth and innovation.'}
             </p>
             <Link
               to={`/register?service=${encodeURIComponent('Mane Innovation')}`}
               className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105 text-white"
               style={{ backgroundColor: '#D6001C' }}
             >
-              Apply Now
+              {translations.innovationApplyNow || 'Apply Now'}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>

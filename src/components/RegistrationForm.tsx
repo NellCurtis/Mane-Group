@@ -113,10 +113,10 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
         <h3 className="text-xl font-bold text-green-800 mb-2">
-          Registration Successful!
+          {translations.registrationSuccessTitle || 'Registration Successful!'}
         </h3>
         <p className="text-green-700">
-          Thank you for your registration. We will contact you soon.
+          {translations.registrationSuccessMessage || 'Thank you for your registration. We will contact you soon.'}
         </p>
       </div>
     );
@@ -132,7 +132,7 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name *
+              {translations.registrationFormFullName || 'Full Name *'}
             </label>
             <input
               type="text"
@@ -142,13 +142,13 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A3D91] focus:border-transparent"
-              placeholder="Enter your full name"
+              placeholder={translations.registrationFormFullNamePlaceholder || 'Enter your full name'}
             />
           </div>
           
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email *
+              {translations.registrationFormEmail || 'Email *'}
             </label>
             <input
               type="email"
@@ -158,13 +158,13 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A3D91] focus:border-transparent"
-              placeholder="Enter your email"
+              placeholder={translations.registrationFormEmailPlaceholder || 'Enter your email'}
             />
           </div>
           
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Phone Number *
+              {translations.registrationFormPhone || 'Phone Number *'}
             </label>
             <input
               type="tel"
@@ -174,13 +174,13 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A3D91] focus:border-transparent"
-              placeholder="Enter your phone number"
+              placeholder={translations.registrationFormPhonePlaceholder || 'Enter your phone number'}
             />
           </div>
           
           <div>
             <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
-              Country *
+              {translations.registrationFormCountry || 'Country *'}
             </label>
             <select
               id="country"
@@ -190,7 +190,7 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A3D91] focus:border-transparent appearance-none bg-white"
             >
-              <option value="">Select your country</option>
+              <option value="">{translations.selectCountry || 'Select your country'}</option>
               <option value="Canada">Canada</option>
               <option value="France">France</option>
               <option value="United States">United States</option>
@@ -204,7 +204,7 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
         
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-            Message
+            {translations.registrationFormMessage || 'Message'}
           </label>
           <textarea
             id="message"
@@ -213,7 +213,7 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
             onChange={handleChange}
             rows={4}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A3D91] focus:border-transparent"
-            placeholder="Enter your message (optional)"
+            placeholder={translations.registrationFormMessagePlaceholder || 'Enter your message (optional)'}
           ></textarea>
         </div>
         
@@ -242,7 +242,7 @@ export default function RegistrationForm({ service, onSuccess }: RegistrationFor
                 Submitting...
               </span>
             ) : (
-              'Submit'
+              'Submit Registration'
             )}
           </button>
         </div>

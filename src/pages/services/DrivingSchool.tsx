@@ -27,7 +27,7 @@ export default function DrivingSchool() {
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
   
   const fetchContent = async () => {
     try {
@@ -82,14 +82,14 @@ export default function DrivingSchool() {
   
   // Using a completely generic approach to avoid TypeScript errors
   const features = [
-    { icon: Users, title: getContent('feature1Title') || 'Certified Instructors', description: getContent('feature1Description') || 'Highly qualified, licensed instructors with extensive driving experience and professional teaching credentials.' },
-    { icon: Car, title: getContent('feature2Title') || 'Modern Vehicles', description: getContent('feature2Description') || 'Well-maintained, late-model vehicles equipped with dual controls for safe, effective learning experience.' },
-    { icon: Clock, title: getContent('feature3Title') || 'Flexible Scheduling', description: getContent('feature3Description') || 'Convenient lesson scheduling that fits your busy lifestyle, including evenings and weekends.' },
-    { icon: Award, title: getContent('feature4Title') || 'Comprehensive Curriculum', description: getContent('feature4Description') || 'Complete curriculum covering all aspects of safe driving, from basics to advanced defensive techniques.' },
-    { icon: Shield, title: getContent('feature5Title') || 'Safe Learning Environment', description: getContent('feature5Description') || 'Controlled learning environment with emphasis on safety protocols and risk-free practice sessions.' },
-    { icon: Star, title: getContent('feature6Title') || 'Personalized Attention', description: getContent('feature6Description') || 'Individualized instruction tailored to your specific needs, learning pace, and skill level.' },
-    { icon: MapPin, title: getContent('feature7Title') || 'Affordable Pricing', description: getContent('feature7Description') || 'Competitive pricing with transparent fee structure and flexible payment options available.' },
-    { icon: CheckCircle, title: getContent('feature8Title') || 'Guaranteed Results', description: getContent('feature8Description') || 'Confidence-building program with proven track record of successful licensing exam results.' }
+    { icon: Users, title: getContent('feature1Title') || translations.drivingSchoolFeature1Title || 'Certified Instructors', description: getContent('feature1Description') || translations.drivingSchoolFeature1Desc || 'Highly qualified, licensed instructors with extensive driving experience and professional teaching credentials.' },
+    { icon: Car, title: getContent('feature2Title') || translations.drivingSchoolFeature2Title || 'Modern Vehicles', description: getContent('feature2Description') || translations.drivingSchoolFeature2Desc || 'Well-maintained, late-model vehicles equipped with dual controls for safe, effective learning experience.' },
+    { icon: Clock, title: getContent('feature3Title') || translations.drivingSchoolFeature3Title || 'Flexible Scheduling', description: getContent('feature3Description') || translations.drivingSchoolFeature3Desc || 'Convenient lesson scheduling that fits your busy lifestyle, including evenings and weekends.' },
+    { icon: Award, title: getContent('feature4Title') || translations.drivingSchoolFeature4Title || 'Comprehensive Curriculum', description: getContent('feature4Description') || translations.drivingSchoolFeature4Desc || 'Complete curriculum covering all aspects of safe driving, from basics to advanced defensive techniques.' },
+    { icon: Shield, title: getContent('feature5Title') || translations.drivingSchoolFeature5Title || 'Safe Learning Environment', description: getContent('feature5Description') || translations.drivingSchoolFeature5Desc || 'Controlled learning environment with emphasis on safety protocols and risk-free practice sessions.' },
+    { icon: Star, title: getContent('feature6Title') || translations.drivingSchoolFeature6Title || 'Personalized Attention', description: getContent('feature6Description') || translations.drivingSchoolFeature6Desc || 'Individualized instruction tailored to your specific needs, learning pace, and skill level.' },
+    { icon: MapPin, title: getContent('feature7Title') || translations.drivingSchoolFeature7Title || 'Affordable Pricing', description: getContent('feature7Description') || translations.drivingSchoolFeature7Desc || 'Competitive pricing with transparent fee structure and flexible payment options available.' },
+    { icon: CheckCircle, title: getContent('feature8Title') || translations.drivingSchoolFeature8Title || 'Guaranteed Results', description: getContent('feature8Description') || translations.drivingSchoolFeature8Desc || 'Confidence-building program with proven track record of successful licensing exam results.' }
   ];
 
   const courses = [
@@ -132,14 +132,14 @@ export default function DrivingSchool() {
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105"
                   style={{ backgroundColor: '#D6001C' }}
                 >
-                  Apply Now
+                  {translations.drivingSchoolApplyNow || 'Apply Now'}
                   <Car className="ml-2 h-5 w-5" />
                 </Link>
                 <a
                   href="#courses"
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl border-2 border-white text-white"
                 >
-                  Our Driving Courses
+                  {translations.drivingSchoolOurCourses || 'Our Driving Courses'}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </div>
@@ -167,10 +167,10 @@ export default function DrivingSchool() {
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                  Our Driving Programs
+                  {translations.drivingSchoolPrograms || 'Our Driving Programs'}
                 </h3>
                 <p className="text-gray-700 mb-6">
-                  Professional driving school offering comprehensive training programs for all license categories. Our certified instructors provide safe, effective, and convenient driving lessons tailored to your schedule and learning pace.
+                  {translations.drivingSchoolProgramsDescription || 'Professional driving school offering comprehensive training programs for all license categories. Our certified instructors provide safe, effective, and convenient driving lessons tailored to your schedule and learning pace.'}
                 </p>
                 <img 
                   src={getImage('instructorImage')} 
@@ -188,10 +188,10 @@ export default function DrivingSchool() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
-                Driving Excellence in Action
+                {translations.drivingSchoolGalleryHeading || 'Driving Excellence in Action'}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience our modern fleet and professional training environment
+                {translations.drivingSchoolGalleryDescription || 'Experience our modern fleet and professional training environment'}
               </p>
             </div>
             
@@ -204,8 +204,8 @@ export default function DrivingSchool() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Modern Training Vehicles</h3>
-                  <p className="text-gray-600">Well-maintained vehicles with dual controls for safe learning</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.drivingSchoolVehicleCardTitle || 'Modern Training Vehicles'}</h3>
+                  <p className="text-gray-600">{translations.drivingSchoolVehicleCardDesc || 'Well-maintained vehicles with dual controls for safe learning'}</p>
                 </div>
               </div>
               
@@ -217,8 +217,8 @@ export default function DrivingSchool() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Real Road Experience</h3>
-                  <p className="text-gray-600">Practical training in various driving conditions</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.drivingSchoolRoadCardTitle || 'Real Road Experience'}</h3>
+                  <p className="text-gray-600">{translations.drivingSchoolRoadCardDesc || 'Practical training in various driving conditions'}</p>
                 </div>
               </div>
               
@@ -230,8 +230,8 @@ export default function DrivingSchool() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Safe Learning Environment</h3>
-                  <p className="text-gray-600">Controlled practice in secure training areas</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.drivingSchoolEnvironmentCardTitle || 'Safe Learning Environment'}</h3>
+                  <p className="text-gray-600">{translations.drivingSchoolEnvironmentCardDesc || 'Controlled practice in secure training areas'}</p>
                 </div>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function DrivingSchool() {
               className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105 text-white"
               style={{ backgroundColor: '#D6001C' }}
             >
-              Apply Now
+              {translations.drivingSchoolApplyNow || 'Apply Now'}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>

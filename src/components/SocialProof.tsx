@@ -1,32 +1,33 @@
 import { Award, Users, Globe, Star } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function SocialProof() {
-  // Not using translations in this component
+  const { translations } = useLanguage();
   
   // Social proof data
   const stats = [
     {
       id: 'clients',
       value: '5000+',
-      label: 'Clients Served',
+      label: translations.clientsServedLabel || 'Clients Served',
       icon: Users
     },
     {
       id: 'rating',
       value: '4.9/5',
-      label: 'Average Rating',
+      label: translations.averageRatingLabel || 'Average Rating',
       icon: Star
     },
     {
       id: 'countries',
       value: '15+',
-      label: 'Countries',
+      label: translations.countriesLabel || 'Countries',
       icon: Globe
     },
     {
       id: 'awards',
       value: '25+',
-      label: 'Awards Won',
+      label: translations.awardsWonLabel || 'Awards Won',
       icon: Award
     }
   ];

@@ -26,7 +26,7 @@ export default function Languages() {
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
   
   const fetchContent = async () => {
     try {
@@ -81,10 +81,10 @@ export default function Languages() {
   
   // Using a completely generic approach to avoid TypeScript errors
   const features = [
-    { icon: Users, title: getContent('feature1Title') || 'Native Speaking Instructors', description: getContent('feature1Description') || 'Learn from fluent native speakers who bring authentic pronunciation, cultural insights, and real-world language expertise to every lesson.' },
-    { icon: BookOpen, title: getContent('feature2Title') || 'Interactive Learning Methods', description: getContent('feature2Description') || 'Engage in dynamic, participatory classes that promote active speaking, listening, reading, and writing skills development.' },
-    { icon: Globe, title: getContent('feature3Title') || 'Flexible Class Schedules', description: getContent('feature3Description') || 'Choose from various scheduling options including morning, evening, weekend, and intensive courses to fit your busy lifestyle.' },
-    { icon: Trophy, title: getContent('feature4Title') || 'Cultural Immersion Programs', description: getContent('feature4Description') || 'Experience authentic cultural elements through themed events, conversation clubs, and multimedia resources that enhance learning.' }
+    { icon: Users, title: getContent('feature1Title') || translations.languagesFeature1Title || 'Native Speaking Instructors', description: getContent('feature1Description') || translations.languagesFeature1Desc || 'Learn from fluent native speakers who bring authentic pronunciation, cultural insights, and real-world language expertise to every lesson.' },
+    { icon: BookOpen, title: getContent('feature2Title') || translations.languagesFeature2Title || 'Interactive Learning Methods', description: getContent('feature2Description') || translations.languagesFeature2Desc || 'Engage in dynamic, participatory classes that promote active speaking, listening, reading, and writing skills development.' },
+    { icon: Globe, title: getContent('feature3Title') || translations.languagesFeature3Title || 'Flexible Class Schedules', description: getContent('feature3Description') || translations.languagesFeature3Desc || 'Choose from various scheduling options including morning, evening, weekend, and intensive courses to fit your busy lifestyle.' },
+    { icon: Trophy, title: getContent('feature4Title') || translations.languagesFeature4Title || 'Cultural Immersion Programs', description: getContent('feature4Description') || translations.languagesFeature4Desc || 'Experience authentic cultural elements through themed events, conversation clubs, and multimedia resources that enhance learning.' }
   ];
 
   const languages = [
@@ -129,14 +129,14 @@ export default function Languages() {
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105"
                   style={{ backgroundColor: '#D6001C' }}
                 >
-                  Apply Now
+                  {translations.languagesApplyNow || 'Apply Now'}
                   <BookOpen className="ml-2 h-5 w-5" />
                 </Link>
                 <a
                   href="#programs"
                   className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl border-2 border-white text-white"
                 >
-                  Our Language Programs
+                  {translations.languagesOurPrograms || 'Our Language Programs'}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </div>
@@ -164,10 +164,10 @@ export default function Languages() {
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                  Our Language Programs
+                  {translations.languagesPrograms || 'Our Language Programs'}
                 </h3>
                 <p className="text-gray-700 mb-6">
-                  Multilingual language training center offering courses in French, English, Spanish, and more. Expert native-speaking instructors provide flexible learning options for all proficiency levels from beginner to advanced.
+                  {translations.languagesProgramsDescription || 'Multilingual language training center offering courses in French, English, Spanish, and more. Expert native-speaking instructors provide flexible learning options for all proficiency levels from beginner to advanced.'}
                 </p>
                 <img 
                   src={getImage('classroomImage')} 
@@ -185,10 +185,10 @@ export default function Languages() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
-                Cultural Learning Experience
+                {translations.languagesGalleryHeading || 'Cultural Learning Experience'}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Immerse yourself in authentic cultural and language experiences
+                {translations.languagesGalleryDescription || 'Immerse yourself in authentic cultural and language experiences'}
               </p>
             </div>
             
@@ -201,8 +201,8 @@ export default function Languages() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Interactive Learning</h3>
-                  <p className="text-gray-600">Engaging group activities and conversation practice</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.languagesInteractiveCardTitle || 'Interactive Learning'}</h3>
+                  <p className="text-gray-600">{translations.languagesInteractiveCardDesc || 'Engaging group activities and conversation practice'}</p>
                 </div>
               </div>
               
@@ -214,8 +214,8 @@ export default function Languages() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Cultural Immersion</h3>
-                  <p className="text-gray-600">Experience authentic cultural elements through themed events</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.languagesCulturalCardTitle || 'Cultural Immersion'}</h3>
+                  <p className="text-gray-600">{translations.languagesCulturalCardDesc || 'Experience authentic cultural elements through themed events'}</p>
                 </div>
               </div>
               
@@ -227,8 +227,8 @@ export default function Languages() {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Native Instructors</h3>
-                  <p className="text-gray-600">Learn from fluent native speakers with real-world expertise</p>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.languagesInstructorsCardTitle || 'Native Instructors'}</h3>
+                  <p className="text-gray-600">{translations.languagesInstructorsCardDesc || 'Learn from fluent native speakers with real-world expertise'}</p>
                 </div>
               </div>
             </div>
@@ -284,7 +284,7 @@ export default function Languages() {
                       {(translations.languagesProgramDescriptions && translations.languagesProgramDescriptions[language.descriptionKey]) || ''}
                     </p>
                     <div className="mb-4">
-                      <h4 className="font-bold mb-2">Levels:</h4>
+                      <h4 className="font-bold mb-2">{translations.languagesLevelsLabel || 'Levels:'}</h4>
                       <div className="flex flex-wrap gap-2">
                         {(translations.languagesProgramLevels && translations.languagesProgramLevels[language.levelsKey] || []).map((level: string, levelIndex: number) => (
                           <span key={levelIndex} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
@@ -294,7 +294,7 @@ export default function Languages() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-bold mb-2">Benefits:</h4>
+                      <h4 className="font-bold mb-2">{translations.languagesBenefitsLabel || 'Benefits:'}</h4>
                       <ul className="space-y-1">
                         {(translations.languagesProgramBenefits && translations.languagesProgramBenefits[language.benefitsKey] || []).map((benefit: string, benefitIndex: number) => (
                           <li key={benefitIndex} className="flex items-start">
@@ -315,17 +315,17 @@ export default function Languages() {
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-              Ready to Speak a New Language?
+              {translations.languagesCtaHeading || 'Ready to Speak a New Language?'}
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Join our community of language learners and start your journey to global communication today.
+              {translations.languagesCallToActionDescription || 'Join our community of language learners and start your journey to global communication today.'}
             </p>
             <Link
               to={`/register?service=${encodeURIComponent('Mane Multi-Linguistique')}`}
               className="inline-flex items-center px-8 py-4 text-lg rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:scale-105 text-white"
               style={{ backgroundColor: '#D6001C' }}
             >
-              Apply Now
+              {translations.languagesApplyNow || 'Apply Now'}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>

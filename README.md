@@ -45,8 +45,8 @@ This application is designed with scalability, maintainability, and performance 
 - **Multi-page Navigation**: Full-featured single-page application with 10+ distinct pages
 - **Responsive Design**: Mobile-first approach ensuring optimal viewing on all devices
 - **Dynamic Service Selection**: Smart registration forms that auto-populate based on URL parameters
-- **Interactive Components**: Modern UI elements including image sliders, testimonials, and statistics
-- **Admin Dashboard**: Comprehensive content management system with role-based access control
+- **Interactive Components**: Modern UI elements including image sliders and testimonials
+- **Admin Dashboard**: Management system for user registrations and messages with role-based access control
 
 - **Social Media Integration**: Direct links to all major social platforms
 
@@ -57,8 +57,6 @@ This application is designed with scalability, maintainability, and performance 
 - **SEO Optimization**: Meta tags and structured data for improved search rankings
 - **Accessibility Compliance**: WCAG 2.1 AA compliant design and functionality
 - **Performance Monitoring**: Built-in analytics and performance tracking
-- **Content Version Control**: Track changes and rollback capabilities
-- **Section-based Editing**: Organized content management by page sections
 
 ## Technology Stack
 
@@ -325,13 +323,12 @@ Translation files are located in `src/lib/translations/`.
 
 ## Customization Options
 
-### Content Management
+### Basic Customization
 
 The admin dashboard allows for:
-- Real-time content editing
-- Version history and rollback capabilities
-- Multi-language content management
-- Media asset management
+- Managing user registrations
+- Managing contact form submissions
+- Managing user accounts
 
 ### Styling
 

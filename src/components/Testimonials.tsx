@@ -20,7 +20,7 @@ export default function Testimonials() {
       name: "Marie Dupont",
       role: "Immigration Client",
       company: "",
-      content: "MANÉ Immigration made our family's visa process incredibly smooth. Their attention to detail and personalized support was exceptional.",
+      content: translations.testimonialContent1 || "MANÉ Immigration made our family's visa process incredibly smooth. Their attention to detail and personalized support was exceptional.",
       rating: 5
     },
     {
@@ -28,7 +28,7 @@ export default function Testimonials() {
       name: "Jean Mbala",
       role: "Driving Student",
       company: "Auto-École Mane d'Afrique",
-      content: "The instructors at Auto-École Mane d'Afrique are patient and professional. I passed my driving test on the first try!",
+      content: translations.testimonialContent2 || "The instructors at Auto-École Mane d'Afrique are patient and professional. I passed my driving test on the first try!",
       rating: 5
     },
     {
@@ -36,7 +36,7 @@ export default function Testimonials() {
       name: "Sarah Johnson",
       role: "Business Owner",
       company: "Tech Innovations Ltd",
-      content: "Mane Innovation transformed our digital infrastructure. Their team delivered beyond our expectations with cutting-edge solutions.",
+      content: translations.testimonialContent3 || "Mane Innovation transformed our digital infrastructure. Their team delivered beyond our expectations with cutting-edge solutions.",
       rating: 5
     }
   ];

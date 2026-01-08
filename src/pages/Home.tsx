@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import ImageSlider from '../components/ImageSlider';
 import Testimonials from '../components/Testimonials';
 
-import Statistics from '../components/Statistics';
 import FAQ from '../components/FAQ';
 import SocialProof from '../components/SocialProof';
 import { ArrowRight, Globe, GraduationCap, Languages, Lightbulb, Palette } from 'lucide-react';
@@ -241,9 +240,7 @@ export default function Home() {
       {/* Social Proof section */}
       <SocialProof />
       
-      {/* Statistics section */}
-      <Statistics />
-      
+
       {/* FAQ section */}
       <FAQ />
 

@@ -99,7 +99,7 @@ export default function Immigration() {
    */
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
 
   /**
    * Function to fetch content from Supabase database
@@ -245,10 +245,10 @@ export default function Immigration() {
             </div>
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                Our Immigration Services
+                {translations.immigrationOurServices || 'Our Immigration Services'}
               </h3>
               <p className="text-gray-700 mb-6">
-                Professional immigration services including visa applications, permanent residency, and citizenship processes. Our certified consultants provide expert guidance and support throughout your immigration journey.
+                {translations.immigrationServicesDescription || 'Professional immigration services including visa applications, permanent residency, and citizenship processes. Our certified consultants provide expert guidance and support throughout your immigration journey.'}
               </p>
               <img 
                 src={getImage('consultationImage')} 
@@ -266,10 +266,10 @@ export default function Immigration() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
-              Immigration Success Stories
+              {translations.immigrationGalleryHeading || 'Immigration Success Stories'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience our comprehensive immigration services and successful outcomes
+              {translations.immigrationGalleryDescription || 'Experience our comprehensive immigration services and successful outcomes'}
             </p>
           </div>
           
@@ -282,8 +282,8 @@ export default function Immigration() {
                 loading="lazy"
               />
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Document Preparation</h3>
-                <p className="text-gray-600">Comprehensive document organization and processing</p>
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.immigrationDocumentPreparation || 'Document Preparation'}</h3>
+                <p className="text-gray-600">{translations.immigrationDocumentPreparationDesc || 'Comprehensive document organization and processing'}</p>
               </div>
             </div>
             
@@ -295,8 +295,8 @@ export default function Immigration() {
                 loading="lazy"
               />
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Successful Approvals</h3>
-                <p className="text-gray-600">High success rate with immigration applications</p>
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.immigrationSuccessfulApprovals || 'Successful Approvals'}</h3>
+                <p className="text-gray-600">{translations.immigrationSuccessfulApprovalsDesc || 'High success rate with immigration applications'}</p>
               </div>
             </div>
             
@@ -308,8 +308,8 @@ export default function Immigration() {
                 loading="lazy"
               />
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Expert Consultation</h3>
-                <p className="text-gray-600">Professional guidance from certified consultants</p>
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>{translations.immigrationExpertConsultation || 'Expert Consultation'}</h3>
+                <p className="text-gray-600">{translations.immigrationExpertConsultationDesc || 'Professional guidance from certified consultants'}</p>
               </div>
             </div>
           </div>
