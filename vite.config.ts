@@ -14,7 +14,11 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'react-router': ['react-router-dom'],
           'supabase': ['@supabase/supabase-js'],
-          'ui-icons': ['lucide-react']
+          'ui-icons': ['lucide-react'],
+          // Separate heavy libraries to reduce main bundle
+          'pdf-libs': ['jspdf', 'jspdf-autotable'],
+          'excel-libs': ['xlsx'],
+          'doc-libs': ['docx'],
         },
         // Optimize for smaller chunks
         assetFileNames: (assetInfo) => {
@@ -27,5 +31,7 @@ export default defineConfig({
     },
     cssCodeSplit: true,
     target: 'es2015',
+    minify: 'esbuild', // Use esbuild for faster builds
+    cssMinify: true,
   },
 });

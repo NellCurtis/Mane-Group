@@ -10,8 +10,12 @@ self.addEventListener('install', event => {
         '/index.html',
         '/favicon.ico',
         '/manifest.json',
-        // Add common API endpoints if needed
+        '/src/index.css',
         // Add common static assets
+        '/images/hero/hero1.jpg',
+        '/images/hero/hero2.jpg',
+        '/images/hero/hero3.jpg',
+        '/images/placeholder.jpg',
       ]);
     })
   );

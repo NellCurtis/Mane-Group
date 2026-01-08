@@ -11,13 +11,35 @@ import { supabase } from '../../lib/supabase';
  * @param _language - Current language (not used but kept for consistency)
  * @returns Array of image URLs for the banner slider
  */
-const getBannerImages = (_language: string) => [
-  '/images/immigration/immi.jpg',
-  '/images/immigration/immi1.jpg',
-  '/images/immigration/immi2.jpg',
-  '/images/immigration/immi3.jpg',
-  '/images/immigration/immi4.jpg'
-];
+const getBannerImages = (content: any) => {
+  // Get banner images from content if available, otherwise use default images
+  if (content && content['bannerImages']) {
+    try {
+      // If bannerImages is a string, try to parse it as JSON
+      if (typeof content['bannerImages'] === 'string') {
+        const parsed = JSON.parse(content['bannerImages']);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+      // If it's already an array, return it
+      if (Array.isArray(content['bannerImages'])) {
+        return content['bannerImages'];
+      }
+    } catch (e) {
+      console.warn('Error parsing banner images, using defaults:', e);
+    }
+  }
+  
+  // Return default images
+  return [
+    '/images/immigration/immi.jpg',
+    '/images/immigration/immi1.jpg',
+    '/images/immigration/immi2.jpg',
+    '/images/immigration/immi3.jpg',
+    '/images/immigration/immi4.jpg'
+  ];
+};
 
 /**
  * Function to get feature items with icons for the immigration service
@@ -65,8 +87,8 @@ export default function Immigration() {
   const [content, setContent] = useState<any>({});
   const [loading, setLoading] = useState(true);
   
-  // Get banner images based on current language
-  const bannerImages = getBannerImages(language);
+  // Get banner images from content
+  const bannerImages = getBannerImages(content);
   
   // Get feature items with translations
   const features = getFeatures(translations);
@@ -117,6 +139,38 @@ export default function Immigration() {
   const getContent = (key: string) => {
     if (loading || !content[key]) {
       return translations[key as keyof typeof translations] || '';
+    }
+    return content[key];
+  };
+
+  /**
+   * Helper function to get image URL by key with fallback to default images
+   * @param key - Image key to retrieve
+   * @returns Image URL from content or default fallback
+   */
+  const getImage = (key: string) => {
+    if (loading || !content[key]) {
+      // Return default image based on key
+      switch(key) {
+        case 'heroImage':
+          return '/images/immigration/immi.jpg';
+        case 'processImage':
+          return '/images/immigration/immi2.jpg';
+        case 'successImage1':
+          return '/images/immigration/immi1.jpg';
+        case 'successImage2':
+          return '/images/immigration/immi3.jpg';
+        case 'mainImage':
+          return '/images/immigration/immi6.jpg';
+        case 'documentImage':
+          return '/images/immigration/immi4.jpg';
+        case 'consultationImage':
+          return '/images/immigration/immi5.jpg';
+        case 'approvalImage':
+          return '/images/immigration/immi7.jpg';
+        default:
+          return '';
+      }
     }
     return content[key];
   };
@@ -174,55 +228,89 @@ export default function Immigration() {
         </div>
       </section>
 
-      {/* Main content section with descriptive text and images */}
-      <section className="py-16 bg-white">
+      {/* Description Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            {/* Section heading with company brand color */}
-            <h2 className="text-4xl font-bold mb-8" style={{ color: '#0A3D91' }}>
-              {getContent('immigrationMainHeading')}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
+                {getContent('immigrationMainHeading') || translations.immigrationMainHeading || 'Immigration Solutions That Transform Dreams into Reality'}
+              </h2>
+              <p className="text-lg text-gray-700 mb-6">
+                {getContent('immigrationMainDescription1') || translations.immigrationMainDescription1 || 'Mane Immigration is your trusted partner for navigating complex immigration processes with confidence and success. Our experienced team of legal experts and certified consultants provide comprehensive immigration services tailored to your unique situation. From work permits and study visas to permanent residency and citizenship applications, we guide you through every step of your journey.'}
+              </p>
+              <p className="text-lg text-gray-700">
+                {getContent('immigrationMainDescription2') || translations.immigrationMainDescription2 || 'With deep expertise in international immigration law and extensive experience in processing diverse applications, we maximize your chances of success. Our personalized approach ensures your application stands out while meeting all regulatory requirements. We stay updated on constantly changing immigration policies to provide accurate, timely advice that aligns with your goals.'}
+              </p>
+            </div>
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold mb-6" style={{ color: '#0A3D91' }}>
+                Our Immigration Services
+              </h3>
+              <p className="text-gray-700 mb-6">
+                Professional immigration services including visa applications, permanent residency, and citizenship processes. Our certified consultants provide expert guidance and support throughout your immigration journey.
+              </p>
+              <img 
+                src={getImage('consultationImage')} 
+                alt="Immigration Consultation" 
+                className="w-full h-48 object-cover rounded-lg shadow-md"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Image Gallery Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
+              Immigration Success Stories
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experience our comprehensive immigration services and successful outcomes
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img 
+                src={getImage('documentImage')} 
+                alt="Document Processing" 
+                className="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Document Preparation</h3>
+                <p className="text-gray-600">Comprehensive document organization and processing</p>
+              </div>
+            </div>
             
-            {/* Rich text content with images interspersed */}
-            <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
-              {/* Show skeleton loader while content is loading */}
-              {loading ? (
-                <ContentSkeleton />
-              ) : (
-                <>
-                  {/* First paragraph of descriptive content */}
-                  <p className="text-xl leading-relaxed">
-                    {getContent('immigrationMainDescription1')}
-                  </p>
-                  
-                  {/* Full-width image for visual appeal */}
-                  <div className="my-8 rounded-lg overflow-hidden shadow-lg">
-                    <img 
-                      src="/images/immigration/immi6.jpg" 
-                      alt="Immigration Services" 
-                      className="w-full h-60 object-cover rounded-lg shadow-md"
-                      loading="lazy"
-                    />
-                  </div>
-                  
-                  {/* Second paragraph of descriptive content */}
-                  <p className="leading-relaxed">
-                    {getContent('immigrationMainDescription2')}
-                  </p>
-                  
-                  {/* Two-column approach section with branded cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-xl font-bold mb-3" style={{ color: '#0A3D91' }}>{getContent('immigrationApproachHeading')}</h3>
-                      <p>{getContent('immigrationApproachDescription1')}</p>
-                    </div>
-                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-xl font-bold mb-3" style={{ color: '#0A3D91' }}>{getContent('immigrationClientCentric')}</h3>
-                      <p>{getContent('immigrationApproachDescription2')}</p>
-                    </div>
-                  </div>
-                </>
-              )}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img 
+                src={getImage('approvalImage')} 
+                alt="Immigration Approval" 
+                className="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Successful Approvals</h3>
+                <p className="text-gray-600">High success rate with immigration applications</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img 
+                src={getImage('mainImage')} 
+                alt="Immigration Services" 
+                className="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Expert Consultation</h3>
+                <p className="text-gray-600">Professional guidance from certified consultants</p>
+              </div>
             </div>
           </div>
         </div>
@@ -231,7 +319,7 @@ export default function Immigration() {
       {/* Full-width banner image for visual separation */}
       <div className="my-8 rounded-lg overflow-hidden shadow-lg mx-auto max-w-7xl">
         <img 
-          src="/images/immigration/immi2.jpg" 
+          src={getImage('processImage')} 
           alt="Immigration Process" 
           className="w-full h-80 object-cover rounded-lg shadow-lg"
           loading="lazy"
@@ -315,13 +403,13 @@ export default function Immigration() {
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <img
-                  src="/images/immigration/immi1.jpg"
+                  src={getImage('successImage1')}
                   alt="Immigration Success"
                   className="rounded-lg shadow-lg w-full h-48 object-cover"
                   loading="lazy"
                 />
                 <img
-                  src="/images/immigration/immi3.jpg"
+                  src={getImage('successImage2')}
                   alt="Family Reunion"
                   className="rounded-lg shadow-lg w-full h-48 object-cover mt-6 md:mt-0"
                   loading="lazy"

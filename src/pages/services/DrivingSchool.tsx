@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ImageSlider from '../../components/ImageSlider';
 import Logo from '../../components/Logo';
 import { ArrowRight, CheckCircle, Car, Clock, Award, MapPin, Users, Star, Shield } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { supabase } from '../../lib/supabase';
 
 const getBannerImages = () => [
   '/images/Auto ecole/Auto1.jpg',
@@ -15,37 +17,97 @@ const getBannerImages = () => [
 ];
 
 export default function DrivingSchool() {
-  const { translations } = useLanguage();
-  const bannerImages = getBannerImages();
+  const { translations, language } = useLanguage();
+  
+  // State for managing dynamic content and loading status
+  const [content, setContent] = useState<any>({});
+  const [loading, setLoading] = useState(true);
+  
+
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
+  
+  const fetchContent = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('content')
+        .select('*')
+        .eq('section', 'driving-school');
+
+      if (error) throw error;
+
+      const contentObj: any = {};
+      data?.forEach(item => {
+        contentObj[item.key] = language === 'en' ? item.englishText : item.frenchText;
+      });
+
+      setContent(contentObj);
+    } catch (error) {
+      console.error('Error fetching content:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const getContent = (key: string) => {
+    if (loading || !content[key]) {
+      return translations[key as keyof typeof translations] || '';
+    }
+    return content[key];
+  };
+  
+  const getImage = (key: string) => {
+    if (loading || !content[key]) {
+      // Return default image based on key
+      switch(key) {
+        case 'bannerImages':
+          return getBannerImages();
+        case 'mainImage':
+          return '/images/Auto ecole/Auto1.jpg';
+        case 'instructorImage':
+          return '/images/Auto ecole/Auto2.jpg';
+        case 'carImage':
+          return '/images/Auto ecole/Auto3.jpg';
+        case 'roadImage':
+          return '/images/Auto ecole/Auto4.jpg';
+        default:
+          return '';
+      }
+    }
+    return content[key];
+  };
   
   // Using a completely generic approach to avoid TypeScript errors
   const features = [
-    { icon: Users, title: 'Certified Instructors', description: 'Highly qualified, licensed instructors with extensive driving experience and professional teaching credentials.' },
-    { icon: Car, title: 'Modern Vehicles', description: 'Well-maintained, late-model vehicles equipped with dual controls for safe, effective learning experience.' },
-    { icon: Clock, title: 'Flexible Scheduling', description: 'Convenient lesson scheduling that fits your busy lifestyle, including evenings and weekends.' },
-    { icon: Award, title: 'Comprehensive Curriculum', description: 'Complete curriculum covering all aspects of safe driving, from basics to advanced defensive techniques.' },
-    { icon: Shield, title: 'Safe Learning Environment', description: 'Controlled learning environment with emphasis on safety protocols and risk-free practice sessions.' },
-    { icon: Star, title: 'Personalized Attention', description: 'Individualized instruction tailored to your specific needs, learning pace, and skill level.' },
-    { icon: MapPin, title: 'Affordable Pricing', description: 'Competitive pricing with transparent fee structure and flexible payment options available.' },
-    { icon: CheckCircle, title: 'Guaranteed Results', description: 'Confidence-building program with proven track record of successful licensing exam results.' }
+    { icon: Users, title: getContent('feature1Title') || 'Certified Instructors', description: getContent('feature1Description') || 'Highly qualified, licensed instructors with extensive driving experience and professional teaching credentials.' },
+    { icon: Car, title: getContent('feature2Title') || 'Modern Vehicles', description: getContent('feature2Description') || 'Well-maintained, late-model vehicles equipped with dual controls for safe, effective learning experience.' },
+    { icon: Clock, title: getContent('feature3Title') || 'Flexible Scheduling', description: getContent('feature3Description') || 'Convenient lesson scheduling that fits your busy lifestyle, including evenings and weekends.' },
+    { icon: Award, title: getContent('feature4Title') || 'Comprehensive Curriculum', description: getContent('feature4Description') || 'Complete curriculum covering all aspects of safe driving, from basics to advanced defensive techniques.' },
+    { icon: Shield, title: getContent('feature5Title') || 'Safe Learning Environment', description: getContent('feature5Description') || 'Controlled learning environment with emphasis on safety protocols and risk-free practice sessions.' },
+    { icon: Star, title: getContent('feature6Title') || 'Personalized Attention', description: getContent('feature6Description') || 'Individualized instruction tailored to your specific needs, learning pace, and skill level.' },
+    { icon: MapPin, title: getContent('feature7Title') || 'Affordable Pricing', description: getContent('feature7Description') || 'Competitive pricing with transparent fee structure and flexible payment options available.' },
+    { icon: CheckCircle, title: getContent('feature8Title') || 'Guaranteed Results', description: getContent('feature8Description') || 'Confidence-building program with proven track record of successful licensing exam results.' }
   ];
 
   const courses = [
     {
-      categoryKey: 'drivingSchoolBeginnerCategory',
-      detailsKey: 'drivingSchoolBeginnerDetails'
+      categoryKey: getContent('course1TitleKey') || 'drivingSchoolBeginnerCategory',
+      detailsKey: getContent('course1DetailsKey') || 'drivingSchoolBeginnerDetails'
     },
     {
-      categoryKey: 'drivingSchoolAdvancedCategory',
-      detailsKey: 'drivingSchoolAdvancedDetails'
+      categoryKey: getContent('course2TitleKey') || 'drivingSchoolAdvancedCategory',
+      detailsKey: getContent('course2DetailsKey') || 'drivingSchoolAdvancedDetails'
     },
     {
-      categoryKey: 'drivingSchoolLicenseTestCategory',
-      detailsKey: 'drivingSchoolLicenseTestDetails'
+      categoryKey: getContent('course3TitleKey') || 'drivingSchoolLicenseTestCategory',
+      detailsKey: getContent('course3DetailsKey') || 'drivingSchoolLicenseTestDetails'
     },
     {
-      categoryKey: 'drivingSchoolRefresherCategory',
-      detailsKey: 'drivingSchoolRefresherDetails'
+      categoryKey: getContent('course4TitleKey') || 'drivingSchoolRefresherCategory',
+      detailsKey: getContent('course4DetailsKey') || 'drivingSchoolRefresherDetails'
     }
   ];
 
@@ -53,7 +115,7 @@ export default function DrivingSchool() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <ImageSlider images={bannerImages} height="h-[70vh]" autoPlay={false} />
+        <ImageSlider images={getImage('bannerImages') || getBannerImages()} height="h-[70vh]" autoPlay={false} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D91]/90 via-[#0A3D91]/70 to-transparent flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
@@ -94,13 +156,13 @@ export default function DrivingSchool() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0A3D91' }}>
-                  {translations.drivingSchoolMainHeading || 'Expert Driving Instruction That Builds Confident, Responsible Drivers'}
+                  {getContent('drivingSchoolMainHeading') || translations.drivingSchoolMainHeading || 'Expert Driving Instruction That Builds Confident, Responsible Drivers'}
                 </h2>
                 <p className="text-lg text-gray-700 mb-6">
-                  {translations.drivingSchoolMainDescription1 || 'Mane Driving School is committed to developing skilled, responsible drivers who navigate roads safely and confidently. Our certified instructors use modern teaching techniques and vehicles equipped with dual controls to ensure a safe learning environment. We cater to beginners, experienced drivers seeking improvement, and those preparing for licensing exams.'}
+                  {getContent('drivingSchoolMainDescription1') || translations.drivingSchoolMainDescription1 || 'Mane Driving School is committed to developing skilled, responsible drivers who navigate roads safely and confidently. Our certified instructors use modern teaching techniques and vehicles equipped with dual controls to ensure a safe learning environment. We cater to beginners, experienced drivers seeking improvement, and those preparing for licensing exams.'}
                 </p>
                 <p className="text-lg text-gray-700">
-                  {translations.drivingSchoolMainDescription2 || 'Our comprehensive curriculum covers everything from basic vehicle operation and traffic laws to advanced defensive driving techniques. Whether you\'re a teenager getting your first license, an adult upgrading your skills, or someone moving from another country, our patient instructors adapt to your learning pace and style.'}
+                  {getContent('drivingSchoolMainDescription2') || translations.drivingSchoolMainDescription2 || 'Our comprehensive curriculum covers everything from basic vehicle operation and traffic laws to advanced defensive driving techniques. Whether you\'re a teenager getting your first license, an adult upgrading your skills, or someone moving from another country, our patient instructors adapt to your learning pace and style.'}
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8">
@@ -110,6 +172,67 @@ export default function DrivingSchool() {
                 <p className="text-gray-700 mb-6">
                   Professional driving school offering comprehensive training programs for all license categories. Our certified instructors provide safe, effective, and convenient driving lessons tailored to your schedule and learning pace.
                 </p>
+                <img 
+                  src={getImage('instructorImage')} 
+                  alt="Certified Driving Instructor" 
+                  className="w-full h-48 object-cover rounded-lg shadow-md"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Image Gallery Section */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0A3D91' }}>
+                Driving Excellence in Action
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Experience our modern fleet and professional training environment
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <img 
+                  src={getImage('carImage')} 
+                  alt="Modern Training Vehicle" 
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Modern Training Vehicles</h3>
+                  <p className="text-gray-600">Well-maintained vehicles with dual controls for safe learning</p>
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <img 
+                  src={getImage('roadImage')} 
+                  alt="Road Training" 
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Real Road Experience</h3>
+                  <p className="text-gray-600">Practical training in various driving conditions</p>
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <img 
+                  src={getImage('mainImage')} 
+                  alt="Driving School" 
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A3D91' }}>Safe Learning Environment</h3>
+                  <p className="text-gray-600">Controlled practice in secure training areas</p>
+                </div>
               </div>
             </div>
           </div>

@@ -129,8 +129,8 @@ export default function ImageSlider({
               src={image}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
-              loading={index === currentIndex ? "eager" : "lazy"}
-              fetchPriority={index === currentIndex ? "high" : "auto"}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : index === 1 ? "auto" : "low"}
               decoding="async"
               onError={(e) => {
                 // Handle broken images gracefully
@@ -139,6 +139,11 @@ export default function ImageSlider({
                 target.alt = 'Image not available';
               }}
               sizes="100vw"
+              style={{
+                // Optimize for progressive loading
+                contentVisibility: 'auto',
+                containIntrinsicSize: '1200px 600px',
+              }}
             />
           </div>
         ))}

@@ -17,6 +17,7 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
+
 const Register = lazy(() => import('./pages/Register'));
 // Loading component for lazy-loaded pages
 const LoadingSpinner = () => (
@@ -69,6 +70,7 @@ export default function App() {
                       </ProtectedRoute>
                     } 
                   />
+
                   {/* Login route */}
                   <Route path="/login" element={<Login />} />
                   {/* Registration route */}
