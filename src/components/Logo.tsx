@@ -46,6 +46,9 @@ export default function Logo({ size = 'md', className = '', customLogo, serviceT
             src={logoSrc} 
             alt="Service Logo" 
             className="w-3/4 h-3/4 object-contain"
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 768px) 50px, (max-width: 1200px) 64px, 80px"
           />
         </div>
       </div>

@@ -229,6 +229,8 @@ yarn typecheck
 
 ## Performance Optimization Guide
 
+This application has been optimized to address common performance issues including large image payloads and JavaScript execution times. For detailed image optimization instructions, see [IMAGE_OPTIMIZATION_GUIDE.md](./IMAGE_OPTIMIZATION_GUIDE.md).
+
 ### 1. Code Splitting
 
 The application implements code splitting through React.lazy and Suspense:
