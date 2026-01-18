@@ -652,7 +652,7 @@ export default {
     }
   ],
   innovationCallToAction: 'Ignite Your Digital Transformation Journey',
-  innovationCallToActionDescription: 'Partner with us to leverage technology for unprecedented business growth and innovation.',
+  innovationCallToActionDescription2: 'Partner with us to leverage technology for unprecedented business growth and innovation.',
   
   // Graphic Design Service
   graphicDesignTitle: 'Mane Graphic Design',
@@ -730,7 +730,7 @@ export default {
     }
   ],
   graphicDesignCallToAction: 'Bring Your Vision to Life Through Exceptional Design',
-  graphicDesignCallToActionDescription: 'Let our creative team transform your ideas into stunning visual experiences.',
+  graphicDesignCallToActionDescription2: 'Let our creative team transform your ideas into stunning visual experiences.',
   
   // Registration Form
   registrationPageTitle: 'Service Registration',
@@ -782,7 +782,7 @@ export default {
   graphicDesignBrandCardTitle: 'Brand Identity',
   graphicDesignBrandCardDesc: 'Distinctive logos and comprehensive branding',
   graphicDesignCtaHeading: 'Ready to Transform Your Brand?',
-  graphicDesignCallToActionDescription: 'Let our creative team transform your ideas into stunning visual experiences.',
+  graphicDesignCallToActionDescription3: 'Let our creative team transform your ideas into stunning visual experiences.',
   graphicDesignFeature1Title: 'Brand Identity Design',
   graphicDesignFeature1Desc: 'Develop distinctive logos and comprehensive brand identities that establish memorable market presence.',
   graphicDesignFeature2Title: 'Marketing Materials',
@@ -810,7 +810,7 @@ export default {
   innovationAICardTitle: 'AI & ML Solutions',
   innovationAICardDesc: 'Intelligent automation and predictive modeling',
   innovationCtaHeading: 'Ready to Innovate Your Business?',
-  innovationCallToActionDescription: 'Partner with us to leverage technology for unprecedented business growth and innovation.',
+  innovationCallToActionDescription3: 'Partner with us to leverage technology for unprecedented business growth and innovation.',
   innovationFeature1Title: 'Custom Software Development',
   innovationFeature1Desc: 'Bespoke software solutions engineered to address your unique business challenges and objectives.',
   innovationFeature2Title: 'Mobile Application Creation',
@@ -838,7 +838,7 @@ export default {
   languagesInstructorsCardTitle: 'Native Instructors',
   languagesInstructorsCardDesc: 'Learn from fluent native speakers with real-world expertise',
   languagesCtaHeading: 'Ready to Speak a New Language?',
-  languagesCallToActionDescription: 'Join our community of language learners and start your journey to global communication today.',
+  languagesCallToActionDescription2: 'Join our community of language learners and start your journey to global communication today.',
   languagesLevelsLabel: 'Levels:',
   languagesBenefitsLabel: 'Benefits:',
   languagesFeature1Title: 'Native Speaking Instructors',
